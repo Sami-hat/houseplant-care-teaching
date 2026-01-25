@@ -1,0 +1,36 @@
+.container {
+  margin-bottom: 0.75rem;
+}
+
+.container.locked {
+  opacity: 0.5;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.value {
+  color: #6b7280;
+}
+
+.track {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #22c55e;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
