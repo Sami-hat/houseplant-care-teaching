@@ -1,0 +1,171 @@
+.main {
+  min-height: 100vh;
+  background: #f9fafb;
+  padding: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.greeting {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  color: #6b7280;
+}
+
+.signOut {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.signOut:hover {
+  color: #374151;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+}
+
+.primaryAction {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background: #22c55e;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: background 0.2s;
+}
+
+.primaryAction:hover {
+  background: #16a34a;
+}
+
+.actionSubtext {
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 0.25rem;
+}
+
+.secondaryAction {
+  padding: 1.5rem 2rem;
+  background: white;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: border-color 0.2s;
+}
+
+.secondaryAction:hover {
+  border-color: #22c55e;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
+
+.plantsSection,
+.progressSection {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.plantsSection h2,
+.progressSection h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+}
+
+.manageLink {
+  font-size: 0.875rem;
+  color: #22c55e;
+  text-decoration: none;
+}
+
+.manageLink:hover {
+  text-decoration: underline;
+}
+
+.plantGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.emptyState {
+  color: #6b7280;
+  text-align: center;
+  padding: 2rem;
+}
+
+.tierGroup {
+  margin-bottom: 1.5rem;
+}
+
+.tierGroup:last-child {
+  margin-bottom: 0;
+}
+
+.tierTitle {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.conceptGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
