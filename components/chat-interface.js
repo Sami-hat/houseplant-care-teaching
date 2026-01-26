@@ -1,14 +1,13 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { useState, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { stripJsonFromResponse } from '@/lib/utils';
 import styles from './chat-interface.module.css';
 
 export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStart, placeholder = "Type your answer..." }) {
-  const [started, setStarted] = useState(!!initialMessage);
   const formRef = useRef(null);
-  const inputRef = useRef(null);
+  const hasAutoStarted = useRef(false);
 
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
     api: apiEndpoint,
@@ -18,34 +17,23 @@ export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStar
     ] : [],
   });
 
-  const startLesson = () => {
-    setStarted(true);
-    setInput('Please teach me about this concept.');
-    // Submit after state update
-    setTimeout(() => {
-      if (formRef.current) {
-        formRef.current.requestSubmit();
-      }
-    }, 10);
-  };
+  // Auto-start lesson when component mounts
+  useEffect(() => {
+    if (autoStart && !hasAutoStarted.current) {
+      hasAutoStarted.current = true;
+      setInput('Please teach me about this concept.');
+      setTimeout(() => {
+        if (formRef.current) {
+          formRef.current.requestSubmit();
+        }
+      }, 100);
+    }
+  }, [autoStart, setInput]);
 
   // Filter out the starter message from display
   const displayMessages = messages.filter(
     (m) => !(m.role === 'user' && m.content === 'Please teach me about this concept.')
   );
-
-  if (autoStart && !started && displayMessages.length === 0) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.startContainer}>
-          <p>Ready to learn?</p>
-          <button onClick={startLesson} className={styles.startButton}>
-            Start Lesson
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.container}>

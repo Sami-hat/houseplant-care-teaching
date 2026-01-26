@@ -86,33 +86,3 @@
   cursor: not-allowed;
 }
 
-.startContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-}
-
-.startContainer p {
-  font-size: 1.125rem;
-  color: #4b5563;
-}
-
-.startButton {
-  padding: 1rem 2rem;
-  background: #22c55e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.startButton:hover {
-  background: #16a34a;
-}
