@@ -6,34 +6,48 @@ import { stripJsonFromResponse } from '@/lib/utils';
 import styles from './chat-interface.module.css';
 
 export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStart }) {
-  const { messages, input, handleInputChange, handleSubmit, isLoading, append } = useChat({
+  const initialMessages = [];
+
+  if (initialMessage) {
+    initialMessages.push({ id: '1', role: 'assistant', content: initialMessage });
+  } else if (autoStart) {
+    initialMessages.push({ id: '1', role: 'user', content: 'Please teach me about this concept.' });
+  }
+
+  const { messages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
     api: apiEndpoint,
     body: { conceptId },
-    initialMessages: initialMessage ? [
-      { id: '1', role: 'assistant', content: initialMessage }
-    ] : [],
+    initialMessages,
   });
 
   const hasStarted = useRef(false);
+  const reloadRef = useRef(reload);
+  reloadRef.current = reload;
 
   useEffect(() => {
-    if (autoStart && !hasStarted.current && messages.length === 0) {
+    if (autoStart && !hasStarted.current && !initialMessage) {
       hasStarted.current = true;
-      append({ role: 'user', content: 'Please teach me about this concept.' });
+      // Delay to ensure component is mounted
+      setTimeout(() => {
+        reloadRef.current();
+      }, 100);
     }
-  }, [autoStart, append, messages.length]);
+  }, [autoStart, initialMessage]);
+
+  // Filter out the auto-start message from display
+  const displayMessages = messages.filter(
+    (m) => !(m.role === 'user' && m.content === 'Please teach me about this concept.')
+  );
 
   return (
     <div className={styles.container}>
       <div className={styles.messages}>
-        {messages.map((message) => (
+        {displayMessages.map((message) => (
           <div
             key={message.id}
             className={`${styles.message} ${message.role === 'assistant' ? styles.assistant : styles.user}`}
           >
-            {message.role === 'user' && message.content === 'Please teach me about this concept.'
-              ? null
-              : stripJsonFromResponse(message.content)}
+            {stripJsonFromResponse(message.content)}
           </div>
         ))}
         {isLoading && (
