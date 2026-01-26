@@ -1,0 +1,137 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.addForm {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+.addForm h2 {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.select,
+.input {
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.select {
+  min-width: 200px;
+}
+
+.input {
+  flex: 1;
+  min-width: 150px;
+}
+
+.addButton {
+  padding: 0.75rem 1.5rem;
+  background: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.addButton:hover:not(:disabled) {
+  background: #16a34a;
+}
+
+.addButton:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}
+
+.plantsList {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.plantsList h2 {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+}
+
+.empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.plantCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  position: relative;
+}
+
+.plantIcon {
+  font-size: 2rem;
+}
+
+.plantInfo {
+  flex: 1;
+}
+
+.plantInfo h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.nickname {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteButton:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
