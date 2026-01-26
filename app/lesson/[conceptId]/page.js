@@ -38,6 +38,7 @@ export default async function LessonPage({ params }) {
         <ChatInterface
           apiEndpoint="/api/lesson/chat"
           conceptId={conceptId}
+          autoStart={true}
         />
       </div>
     </main>
