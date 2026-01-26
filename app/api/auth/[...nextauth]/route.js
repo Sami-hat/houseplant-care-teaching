@@ -48,9 +48,6 @@ const authOptions = {
       return token;
     },
   },
-  pages: {
-    signIn: '/',
-  },
 };
 
 const handler = NextAuth(authOptions);
