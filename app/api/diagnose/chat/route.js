@@ -1,4 +1,4 @@
-import { streamText } from 'ai';
+import { streamText, convertToModelMessages } from 'ai';
 import { google } from '@ai-sdk/google';
 import { auth } from '@/lib/auth';
 import { db } from '@/db';
@@ -35,7 +35,7 @@ export async function POST(req) {
     const result = streamText({
       model: google('gemini-1.5-flash'),
       system: systemPrompt,
-      messages,
+      messages: await convertToModelMessages(messages),
     });
 
     return result.toUIMessageStreamResponse();
