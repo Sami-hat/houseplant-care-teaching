@@ -37,7 +37,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <a href="/api/auth/signin/github" className={styles.signInButton}>
+        <a href="/api/auth/signin" className={styles.signInButton}>
           Sign in with GitHub
         </a>
       </div>
