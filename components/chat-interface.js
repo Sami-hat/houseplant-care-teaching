@@ -1,43 +1,56 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { stripJsonFromResponse } from '@/lib/utils';
 import styles from './chat-interface.module.css';
 
 export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStart }) {
-  const initialMessages = [];
+  const [started, setStarted] = useState(!!initialMessage);
 
-  if (initialMessage) {
-    initialMessages.push({ id: '1', role: 'assistant', content: initialMessage });
-  } else if (autoStart) {
-    initialMessages.push({ id: '1', role: 'user', content: 'Please teach me about this concept.' });
-  }
-
-  const { messages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: apiEndpoint,
     body: { conceptId },
-    initialMessages,
+    initialMessages: initialMessage ? [
+      { id: '1', role: 'assistant', content: initialMessage }
+    ] : [],
   });
 
-  const hasStarted = useRef(false);
-  const reloadRef = useRef(reload);
-  reloadRef.current = reload;
-
-  useEffect(() => {
-    if (autoStart && !hasStarted.current && !initialMessage) {
-      hasStarted.current = true;
-      // Delay to ensure component is mounted
+  const startLesson = async () => {
+    setStarted(true);
+    // Manually submit the form with a starter message
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
+    if (input) {
+      input.value = 'Please teach me about this concept.';
+      // Trigger React's onChange
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+      nativeInputValueSetter.call(input, 'Please teach me about this concept.');
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      // Small delay then submit
       setTimeout(() => {
-        reloadRef.current();
-      }, 100);
+        form?.requestSubmit();
+      }, 50);
     }
-  }, [autoStart, initialMessage]);
+  };
 
-  // Filter out the auto-start message from display
+  // Filter out the starter message from display
   const displayMessages = messages.filter(
     (m) => !(m.role === 'user' && m.content === 'Please teach me about this concept.')
   );
+
+  if (autoStart && !started && displayMessages.length === 0) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.startContainer}>
+          <p>Ready to learn?</p>
+          <button onClick={startLesson} className={styles.startButton}>
+            Start Lesson
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -57,8 +70,9 @@ export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStar
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form id="chat-form" onSubmit={handleSubmit} className={styles.form}>
         <input
+          id="chat-input"
           type="text"
           value={input}
           onChange={handleInputChange}
