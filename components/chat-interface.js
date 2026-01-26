@@ -1,14 +1,16 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { stripJsonFromResponse } from '@/lib/utils';
 import styles from './chat-interface.module.css';
 
-export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStart }) {
+export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStart, placeholder = "Type your answer..." }) {
   const [started, setStarted] = useState(!!initialMessage);
+  const formRef = useRef(null);
+  const inputRef = useRef(null);
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
     api: apiEndpoint,
     body: { conceptId },
     initialMessages: initialMessage ? [
@@ -16,22 +18,15 @@ export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStar
     ] : [],
   });
 
-  const startLesson = async () => {
+  const startLesson = () => {
     setStarted(true);
-    // Manually submit the form with a starter message
-    const form = document.getElementById('chat-form');
-    const input = document.getElementById('chat-input');
-    if (input) {
-      input.value = 'Please teach me about this concept.';
-      // Trigger React's onChange
-      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-      nativeInputValueSetter.call(input, 'Please teach me about this concept.');
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-      // Small delay then submit
-      setTimeout(() => {
-        form?.requestSubmit();
-      }, 50);
-    }
+    setInput('Please teach me about this concept.');
+    // Submit after state update
+    setTimeout(() => {
+      if (formRef.current) {
+        formRef.current.requestSubmit();
+      }
+    }, 10);
   };
 
   // Filter out the starter message from display
@@ -70,13 +65,13 @@ export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStar
         )}
       </div>
 
-      <form id="chat-form" onSubmit={handleSubmit} className={styles.form}>
+      <form ref={formRef} onSubmit={handleSubmit} className={styles.form}>
         <input
-          id="chat-input"
+          ref={inputRef}
           type="text"
           value={input}
           onChange={handleInputChange}
-          placeholder="Type your answer..."
+          placeholder={placeholder}
           disabled={isLoading}
           className={styles.input}
         />

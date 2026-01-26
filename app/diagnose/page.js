@@ -29,6 +29,7 @@ export default async function DiagnosePage() {
         <ChatInterface
           apiEndpoint="/api/diagnose/chat"
           initialMessage="Hello! I'm here to help diagnose any problems with your plants. What symptoms are you noticing? Please describe what's happening - are there any changes to the leaves, stems, or soil?"
+          placeholder="Describe your plant's symptoms..."
         />
       </div>
     </main>
