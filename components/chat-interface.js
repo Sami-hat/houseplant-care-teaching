@@ -3,6 +3,7 @@
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 import { useState, useRef, useEffect, useMemo } from 'react';
+import Markdown from 'react-markdown';
 import { stripJsonFromResponse } from '@/lib/utils';
 import styles from './chat-interface.module.css';
 
@@ -68,7 +69,11 @@ export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStar
             key={message.id}
             className={`${styles.message} ${message.role === 'assistant' ? styles.assistant : styles.user}`}
           >
-            {stripJsonFromResponse(getMessageText(message))}
+            {message.role === 'assistant' ? (
+              <Markdown>{stripJsonFromResponse(getMessageText(message))}</Markdown>
+            ) : (
+              stripJsonFromResponse(getMessageText(message))
+            )}
           </div>
         ))}
         {isLoading && (
