@@ -17,6 +17,28 @@ function getMessageText(message) {
   return message?.content || '';
 }
 
+function speak(text) {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return;
+
+  window.speechSynthesis.cancel();
+
+  const speech = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+  const preferredVoice = voices.find(v =>
+    v.name.includes('Google') ||
+    v.name.includes('Natural') ||
+    v.name.includes('Neural') ||
+    v.name.includes('Samantha') ||
+    v.name.includes('Microsoft')
+  ) || voices.find(v => v.lang.startsWith('en'));
+
+  if (preferredVoice) speech.voice = preferredVoice;
+  speech.rate = 1.0;
+  speech.pitch = 1.0;
+
+  window.speechSynthesis.speak(speech);
+}
+
 export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStart, placeholder = "Type your answer..." }) {
   const [input, setInput] = useState('');
   const hasAutoStarted = useRef(false);
@@ -70,7 +92,17 @@ export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStar
             className={`${styles.message} ${message.role === 'assistant' ? styles.assistant : styles.user}`}
           >
             {message.role === 'assistant' ? (
-              <Markdown>{stripJsonFromResponse(getMessageText(message))}</Markdown>
+              <>
+                <Markdown>{stripJsonFromResponse(getMessageText(message))}</Markdown>
+                <button
+                  type="button"
+                  onClick={() => speak(stripJsonFromResponse(getMessageText(message)))}
+                  className={styles.speakButton}
+                  title="Read aloud"
+                >
+                  🔊
+                </button>
+              </>
             ) : (
               stripJsonFromResponse(getMessageText(message))
             )}

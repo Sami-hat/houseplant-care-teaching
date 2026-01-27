@@ -54,7 +54,7 @@ export async function POST(req) {
         if (jsonMatch) {
           const masteryDelta = parseInt(jsonMatch[2], 10);
 
-          // Update knowledge
+          // Check if knowledge row exists
           const current = await db.query.userKnowledge.findFirst({
             where: and(
               eq(userKnowledge.userId, userId),
@@ -64,16 +64,28 @@ export async function POST(req) {
 
           const newMastery = Math.min(100, Math.max(0, (current?.mastery || 0) + masteryDelta));
 
-          await db.update(userKnowledge)
-            .set({
+          if (current) {
+            // Update existing row
+            await db.update(userKnowledge)
+              .set({
+                mastery: newMastery,
+                lastPracticed: new Date(),
+                timesPracticed: (current.timesPracticed || 0) + 1,
+              })
+              .where(and(
+                eq(userKnowledge.userId, userId),
+                eq(userKnowledge.conceptId, conceptId)
+              ));
+          } else {
+            // Insert new row
+            await db.insert(userKnowledge).values({
+              userId,
+              conceptId,
               mastery: newMastery,
               lastPracticed: new Date(),
-              timesPracticed: (current?.timesPracticed || 0) + 1,
-            })
-            .where(and(
-              eq(userKnowledge.userId, userId),
-              eq(userKnowledge.conceptId, conceptId)
-            ));
+              timesPracticed: 1,
+            });
+          }
         }
       },
     });
