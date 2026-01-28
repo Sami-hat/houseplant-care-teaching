@@ -2,6 +2,8 @@
 
 A personalised houseplant care learning app built with Next.js and the Vercel AI SDK.
 
+[Website Link](https://bloomwise-three.vercel.app/)
+
 ## What I Built
 
 An interactive web app that teaches houseplant care through AI-powered lessons tailored to the plants you actually own. The app tracks your knowledge across 10 concepts organised into 3 tiers, adapting content to your specific plants and home environment.
