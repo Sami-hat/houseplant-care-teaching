@@ -14,13 +14,80 @@ An interactive web app that teaches houseplant care through AI-powered lessons t
 - **Plant doctor** - AI-powered diagnosis chat for troubleshooting plant problems
 - **Plant management** - Add, nickname, and remove plants from your collection
 
-### Concept Curriculum
+## Setup
 
-| Tier | Concepts |
-|------|----------|
-| 1 - Fundamentals | Light Requirements, Watering Basics, Soil & Drainage |
-| 2 - Intermediate | Humidity, Fertilising, Repotting, Seasonal Care |
-| 3 - Advanced | Propagation, Pest Identification, Disease Diagnosis |
+### Prerequisites
+
+- Node.js 18+
+- A [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres) database
+- A [GitHub OAuth App](https://github.com/settings/developers)
+- A [Google AI API key](https://aistudio.google.com/apikey)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Sami-hat/houseplant-care-teaching.git
+cd houseplant-care-teaching
+
+# Install dependencies
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+# Database (from Vercel Postgres dashboard)
+POSTGRES_URL="postgres://..."
+
+# GitHub OAuth (create at github.com/settings/developers)
+GITHUB_ID="your_client_id"
+GITHUB_SECRET="your_client_secret"
+
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="generate_with_openssl_rand_base64_32"
+
+# Google AI (from aistudio.google.com/apikey)
+GOOGLE_GENERATIVE_AI_API_KEY="your_api_key"
+```
+
+**Generating NEXTAUTH_SECRET:**
+```bash
+openssl rand -base64 32
+```
+
+**GitHub OAuth Setup:**
+1. Go to GitHub → Settings → Developer settings → OAuth Apps → New OAuth App
+2. Set Homepage URL to `http://localhost:3000`
+3. Set Authorization callback URL to `http://localhost:3000/api/auth/callback/github`
+4. Copy the Client ID and Client Secret to your `.env.local`
+
+### Database Setup
+
+```bash
+# Push the schema to your database
+npm run db:push
+```
+
+### Running Locally
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Deployment
+
+1. Push your code to GitHub
+2. Import the project in [Vercel](https://vercel.com)
+3. Add the same environment variables in Vercel's dashboard (change `NEXTAUTH_URL` to your production URL)
+4. Deploy
+
+---
 
 ## Key Decisions
 
