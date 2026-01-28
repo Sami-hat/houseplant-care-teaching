@@ -24,7 +24,7 @@ export async function POST(req) {
       where: eq(userPlants.userId, userId),
     });
 
-    const learnerContext = {
+    const learnerContext = {  
       environment: environment || { lightLevel: 'medium', humidity: 'moderate', climate: 'temperate' },
       plants,
       knowledge: {},
