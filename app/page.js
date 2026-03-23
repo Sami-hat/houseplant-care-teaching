@@ -18,7 +18,7 @@ export default async function HomePage() {
     <main className={styles.main}>
       <div className={styles.hero}>
         <h1 className={styles.title}>Bloomwise</h1>
-        <p className={styles.tagline}>Learn to care for your houseplants with personalised AI lessons</p>
+        <p className={styles.tagline}>Learn to care for your houseplants with personalised lessons</p>
 
         <div className={styles.features}>
           <div className={styles.feature}>

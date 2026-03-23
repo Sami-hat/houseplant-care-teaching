@@ -5,10 +5,10 @@ import styles from './page.module.css';
 export default function SignInButtons() {
   return (
     <div className={styles.signInButtons}>
-      <button onClick={() => signIn('github')} className={styles.signInButton}>
+      <button onClick={() => signIn('github', { callbackUrl: '/' })} className={styles.signInButton}>
         Sign in with GitHub
       </button>
-      <button onClick={() => signIn('google')} className={styles.signInButtonGoogle}>
+      <button onClick={() => signIn('google', { callbackUrl: '/' })} className={styles.signInButtonGoogle}>
         Sign in with Google
       </button>
     </div>
