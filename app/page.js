@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
 import styles from './page.module.css';
+import SignInButtons from './sign-in-buttons';
 
 export default async function HomePage() {
   const session = await auth();
@@ -37,14 +38,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className={styles.signInButtons}>
-          <a href="/api/auth/signin/github" className={styles.signInButton}>
-            Sign in with GitHub
-          </a>
-          <a href="/api/auth/signin/google" className={styles.signInButtonGoogle}>
-            Sign in with Google
-          </a>
-        </div>
+        <SignInButtons />
       </div>
     </main>
   );
