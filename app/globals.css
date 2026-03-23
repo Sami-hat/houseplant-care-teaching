@@ -1,6 +1,21 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --forest: #0f2318;
+  --emerald: #1e5c3a;
+  --jade: #3a8c5c;
+  --sage: #6cb584;
+  --mint: #c5ead5;
+  --dew: #f0f9f3;
+  --terracotta: #c4704a;
+  --clay: #f2d9c9;
+  --cream: #fdf9f4;
+  --parchment: #f7f0e6;
+  --ink: #1a2e22;
+  --moss: #4a6b54;
+  --stone: #7d8f84;
+  --border: #e0ddd8;
+
+  --background: var(--cream);
+  --foreground: var(--ink);
 }
 
 html,
@@ -12,7 +27,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,61 +1,121 @@
 .main {
   min-height: 100vh;
+  background: var(--forest);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-  padding: 2rem;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.main::before {
+  content: '';
+  position: fixed;
+  top: -20%;
+  right: -10%;
+  width: 70vw;
+  height: 70vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58, 140, 92, 0.18) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main::after {
+  content: '';
+  position: fixed;
+  bottom: -20%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 112, 74, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero {
   text-align: center;
-  max-width: 800px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 2rem 5rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #166534;
-  margin: 0 0 1rem;
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 800;
+  color: var(--cream);
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-shadow: 0 0 80px rgba(108, 181, 132, 0.25);
 }
 
 .tagline {
-  font-size: 1.25rem;
-  color: #4b5563;
-  margin: 0 0 3rem;
+  font-size: 1.2rem;
+  color: var(--sage);
+  margin: 0 auto 4rem;
+  line-height: 1.6;
+  max-width: 480px;
+  letter-spacing: 0.01em;
 }
 
 .features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-bottom: 3rem;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
 }
 
 .feature {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: left;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.feature:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(108, 181, 132, 0.3);
+}
+
+.feature:nth-child(1) {
+  border-top: 3px solid var(--jade);
+}
+
+.feature:nth-child(2) {
+  border-top: 3px solid var(--terracotta);
+}
+
+.feature:nth-child(3) {
+  border-top: 3px solid var(--sage);
 }
 
 .featureIcon {
-  font-size: 2.5rem;
+  font-size: 2rem;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .feature h3 {
   margin: 0 0 0.5rem;
-  font-size: 1.125rem;
-  color: #1f2937;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
 
 .feature p {
   margin: 0;
-  font-size: 0.875rem;
-  color: #6b7280;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  color: rgba(197, 234, 213, 0.65);
+  line-height: 1.6;
 }
 
 .signInButtons {
@@ -67,41 +127,49 @@
 
 .signInButton {
   display: inline-block;
-  padding: 1rem 2rem;
-  background: #22c55e;
-  color: white;
+  padding: 1rem 2.5rem;
+  background: var(--cream);
+  color: var(--forest);
   text-decoration: none;
-  border-radius: 8px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  transition: background 0.2s;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border: 2px solid var(--cream);
+  transition: all 0.2s;
 }
 
 .signInButton:hover {
-  background: #16a34a;
+  background: var(--mint);
+  border-color: var(--mint);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(197, 234, 213, 0.2);
 }
 
 .signInButtonGoogle {
   display: inline-block;
-  padding: 1rem 2rem;
-  background: white;
-  color: #1f2937;
+  padding: 1rem 2.5rem;
+  background: var(--terracotta);
+  color: white;
   text-decoration: none;
-  border-radius: 8px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  border: 2px solid #d1d5db;
-  transition: border-color 0.2s, background 0.2s;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border: 2px solid var(--terracotta);
+  transition: all 0.2s;
 }
 
 .signInButtonGoogle:hover {
-  border-color: #9ca3af;
-  background: #f9fafb;
+  background: #b35e3a;
+  border-color: #b35e3a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(196, 112, 74, 0.4);
 }
 
 @media (max-width: 768px) {
   .title {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   .features {

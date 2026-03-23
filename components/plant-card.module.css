@@ -2,14 +2,29 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--dew);
+  border-radius: 10px;
+  border: 1px solid var(--mint);
+  transition: all 0.2s;
+}
+
+.card:hover {
   background: white;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border-color: var(--jade);
+  box-shadow: 0 2px 10px rgba(30, 92, 58, 0.1);
 }
 
 .icon {
-  font-size: 2rem;
+  font-size: 1.75rem;
+  width: 44px;
+  height: 44px;
+  background: var(--mint);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .info {
@@ -18,13 +33,14 @@
 
 .name {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--forest);
 }
 
 .nickname {
-  margin: 0.25rem 0 0;
-  font-size: 0.875rem;
-  color: #6b7280;
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  color: var(--moss);
   font-style: italic;
 }

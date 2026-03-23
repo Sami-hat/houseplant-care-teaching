@@ -1,27 +1,43 @@
 .card {
   display: block;
-  padding: 1rem;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  padding: 1.25rem;
+  background: var(--dew);
+  border: 1px solid var(--mint);
+  border-radius: 10px;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--jade), var(--sage));
 }
 
 .card:hover {
-  border-color: #22c55e;
-  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15);
+  border-color: var(--jade);
+  background: white;
+  box-shadow: 0 4px 16px rgba(30, 92, 58, 0.12);
+  transform: translateY(-2px);
 }
 
 .name {
   margin: 0 0 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--forest);
 }
 
 .description {
   margin: 0;
-  font-size: 0.875rem;
-  color: #6b7280;
+  font-size: 0.825rem;
+  color: var(--moss);
+  line-height: 1.5;
 }

@@ -1,6 +1,6 @@
 .main {
   min-height: 100vh;
-  background: #f9fafb;
+  background: var(--cream);
   padding: 1.5rem;
 }
 
@@ -8,30 +8,43 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--mint);
 }
 
 .greeting {
   margin: 0;
-  font-size: 1.75rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
   margin: 0.25rem 0 0;
-  color: #6b7280;
+  color: var(--moss);
+  font-size: 0.9rem;
 }
 
 .signOut {
-  color: #6b7280;
+  color: var(--stone);
   text-decoration: none;
   font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .signOut:hover {
-  color: #374151;
+  color: var(--forest);
+  border-color: var(--forest);
+  background: var(--parchment);
 }
 
 .body {
@@ -41,19 +54,23 @@
 
 .diagnoseAction {
   display: inline-block;
-  padding: 0.875rem 1.5rem;
-  background: white;
-  color: #374151;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  padding: 0.875rem 1.75rem;
+  background: var(--terracotta);
+  color: white;
+  border: none;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
   margin-bottom: 2rem;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
 }
 
 .diagnoseAction:hover {
-  border-color: #22c55e;
+  background: #b35e3a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(196, 112, 74, 0.35);
 }
 
 .content {
@@ -68,12 +85,20 @@
   }
 }
 
-.plantsSection,
+.plantsSection {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 14px;
+  border-left: 4px solid var(--jade);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
 .guidesSection {
   background: white;
   padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  border-left: 4px solid var(--terracotta);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
 .sectionHeader {
@@ -85,22 +110,31 @@
 
 .sectionHeader h2 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -0.01em;
 }
 
 .guidesSection h2 {
   margin: 0 0 1rem;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -0.01em;
 }
 
 .manageLink {
-  font-size: 0.875rem;
-  color: #22c55e;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--jade);
   text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .manageLink:hover {
-  text-decoration: underline;
+  color: var(--emerald);
 }
 
 .plantGrid {
@@ -110,9 +144,10 @@
 }
 
 .emptyState {
-  color: #6b7280;
+  color: var(--stone);
   text-align: center;
   padding: 2rem;
+  font-size: 0.9rem;
 }
 
 .conceptGrid {

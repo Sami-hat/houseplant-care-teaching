@@ -5,15 +5,20 @@
 
 .addForm {
   background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  padding: 1.75rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--jade);
   margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .addForm h2 {
-  margin: 0 0 1rem;
-  font-size: 1.125rem;
+  margin: 0 0 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -0.01em;
 }
 
 .formRow {
@@ -24,10 +29,21 @@
 
 .select,
 .input {
-  padding: 0.75rem;
-  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border);
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--cream);
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+.select:focus,
+.input:focus {
+  outline: none;
+  border-color: var(--jade);
+  background: white;
 }
 
 .select {
@@ -40,41 +56,52 @@
 }
 
 .addButton {
-  padding: 0.75rem 1.5rem;
-  background: #22c55e;
+  padding: 0.75rem 1.75rem;
+  background: var(--emerald);
   color: white;
   border: none;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  font-family: inherit;
+  font-size: 0.9rem;
 }
 
 .addButton:hover:not(:disabled) {
-  background: #16a34a;
+  background: var(--forest);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 92, 58, 0.3);
 }
 
 .addButton:disabled {
-  background: #d1d5db;
+  background: var(--border);
+  color: var(--stone);
   cursor: not-allowed;
 }
 
 .plantsList {
   background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  padding: 1.75rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--terracotta);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .plantsList h2 {
-  margin: 0 0 1rem;
-  font-size: 1.125rem;
+  margin: 0 0 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -0.01em;
 }
 
 .empty {
   text-align: center;
-  color: #6b7280;
+  color: var(--stone);
   padding: 2rem;
+  font-size: 0.9rem;
 }
 
 .grid {
@@ -87,14 +114,29 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
-  background: #f9fafb;
-  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  background: var(--dew);
+  border-radius: 10px;
+  border: 1px solid var(--mint);
   position: relative;
+  transition: all 0.2s;
+}
+
+.plantCard:hover {
+  background: white;
+  border-color: var(--jade);
 }
 
 .plantIcon {
-  font-size: 2rem;
+  font-size: 1.75rem;
+  width: 44px;
+  height: 44px;
+  background: var(--mint);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .plantInfo {
@@ -103,14 +145,15 @@
 
 .plantInfo h3 {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--forest);
 }
 
 .nickname {
-  margin: 0.25rem 0 0;
-  font-size: 0.875rem;
-  color: #6b7280;
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  color: var(--moss);
   font-style: italic;
 }
 
@@ -122,16 +165,17 @@
   height: 24px;
   border: none;
   background: transparent;
-  color: #9ca3af;
-  font-size: 1.25rem;
+  color: var(--stone);
+  font-size: 1.125rem;
   cursor: pointer;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
 }
 
 .deleteButton:hover {
-  background: #fee2e2;
-  color: #dc2626;
+  background: var(--clay);
+  color: var(--terracotta);
 }

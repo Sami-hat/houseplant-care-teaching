@@ -1,26 +1,28 @@
 .main {
   min-height: 100vh;
-  background: #f9fafb;
+  background: var(--cream);
   display: flex;
   flex-direction: column;
 }
 
 .header {
   background: white;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--mint);
+  padding: 1.25rem 1.5rem;
 }
 
 .backLink {
   display: inline-block;
-  color: #6b7280;
+  color: var(--moss);
   text-decoration: none;
   font-size: 0.875rem;
-  margin-bottom: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.875rem;
+  transition: color 0.2s;
 }
 
 .backLink:hover {
-  color: #374151;
+  color: var(--emerald);
 }
 
 .lessonInfo {
@@ -29,12 +31,15 @@
 
 .title {
   margin: 0 0 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -0.02em;
 }
 
 .objective {
   margin: 0;
-  color: #6b7280;
+  color: var(--moss);
   font-size: 0.875rem;
 }
 
@@ -44,8 +49,8 @@
   width: 100%;
   margin: 0 auto;
   background: white;
-  border-left: 1px solid #e5e7eb;
-  border-right: 1px solid #e5e7eb;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
 }
