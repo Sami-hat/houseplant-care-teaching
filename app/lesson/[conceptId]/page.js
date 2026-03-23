@@ -5,7 +5,7 @@ import { CONCEPTS } from '@/lib/concepts';
 import { ChatInterface } from '@/components/chat-interface';
 import styles from './lesson.module.css';
 
-export default async function LessonPage({ params }) {
+export default async function LessonPage({ params, searchParams }) {
   const session = await auth();
 
   if (!session) {
@@ -17,6 +17,7 @@ export default async function LessonPage({ params }) {
   }
 
   const { conceptId } = await params;
+  const { plant: plantId } = await searchParams;
   const concept = CONCEPTS[conceptId];
 
   if (!concept) {
@@ -28,9 +29,8 @@ export default async function LessonPage({ params }) {
       <header className={styles.header}>
         <Link href="/dashboard" className={styles.backLink}>← Back to Dashboard</Link>
         <div className={styles.lessonInfo}>
-          <span className={styles.tier}>Tier {concept.tier}</span>
           <h1 className={styles.title}>{concept.name}</h1>
-          <p className={styles.objective}>{concept.objective}</p>
+          <p className={styles.objective}>{concept.description}</p>
         </div>
       </header>
 
@@ -38,6 +38,7 @@ export default async function LessonPage({ params }) {
         <ChatInterface
           apiEndpoint="/api/lesson/chat"
           conceptId={conceptId}
+          plantId={plantId || null}
           autoStart={true}
         />
       </div>

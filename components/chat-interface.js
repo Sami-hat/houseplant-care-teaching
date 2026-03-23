@@ -39,14 +39,14 @@ function speak(text) {
   window.speechSynthesis.speak(speech);
 }
 
-export function ChatInterface({ apiEndpoint, conceptId, initialMessage, autoStart, placeholder = "Type your answer..." }) {
+export function ChatInterface({ apiEndpoint, conceptId, plantId, initialMessage, autoStart, placeholder = "Type your message..." }) {
   const [input, setInput] = useState('');
   const hasAutoStarted = useRef(false);
 
   const transport = useMemo(() => new DefaultChatTransport({
     api: apiEndpoint,
-    body: { conceptId },
-  }), [apiEndpoint, conceptId]);
+    body: { conceptId, plantId },
+  }), [apiEndpoint, conceptId, plantId]);
 
   const { messages, sendMessage, status } = useChat({
     transport,

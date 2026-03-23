@@ -27,17 +27,6 @@
   max-width: 800px;
 }
 
-.tier {
-  display: inline-block;
-  background: #f0fdf4;
-  color: #166534;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
-}
-
 .title {
   margin: 0 0 0.5rem;
   font-size: 1.5rem;

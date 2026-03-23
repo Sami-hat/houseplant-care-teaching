@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { db } from '@/db';
-import { userEnvironment, userPlants, userKnowledge, users } from '@/db/schema';
-import { CONCEPTS } from '@/lib/concepts';
+import { userEnvironment, userPlants, users } from '@/db/schema';
 import { nanoid } from 'nanoid';
 import { eq } from 'drizzle-orm';
 
@@ -37,16 +36,6 @@ export async function POST(req) {
       plantType: plant.plantType,
       nickname: plant.nickname || null,
     });
-  }
-
-  // Initialise knowledge state for all concepts
-  for (const conceptId of Object.keys(CONCEPTS)) {
-    await db.insert(userKnowledge).values({
-      userId: session.user.id,
-      conceptId,
-      mastery: 0,
-      timesPracticed: 0,
-    }).onConflictDoNothing();
   }
 
   // Mark onboarding complete

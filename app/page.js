@@ -22,13 +22,13 @@ export default async function HomePage() {
         <div className={styles.features}>
           <div className={styles.feature}>
             <span className={styles.featureIcon}>🌱</span>
-            <h3>Personalised Learning</h3>
-            <p>Lessons tailored to the plants you own and your home environment</p>
+            <h3>Instant Plant Care Info</h3>
+            <p>Get tailored care guides for every plant you own, instantly</p>
           </div>
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>📚</span>
-            <h3>Track Your Progress</h3>
-            <p>Master plant care concepts from basics to advanced techniques</p>
+            <span className={styles.featureIcon}>🎯</span>
+            <h3>Plant-Specific Guides</h3>
+            <p>Focus on one plant at a time or get advice across your whole collection</p>
           </div>
           <div className={styles.feature}>
             <span className={styles.featureIcon}>🩺</span>
@@ -37,9 +37,14 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <a href="/api/auth/signin" className={styles.signInButton}>
-          Sign in with GitHub
-        </a>
+        <div className={styles.signInButtons}>
+          <a href="/api/auth/signin/github" className={styles.signInButton}>
+            Sign in with GitHub
+          </a>
+          <a href="/api/auth/signin/google" className={styles.signInButtonGoogle}>
+            Sign in with Google
+          </a>
+        </div>
       </div>
     </main>
   );
