@@ -42,11 +42,12 @@ export default async function DashboardPage({ searchParams }) {
       </header>
 
       <div className={styles.body}>
-        <PlantSelector plants={plants} selectedPlantId={selectedPlantId || null} />
-
-        <Link href="/diagnose" className={styles.diagnoseAction}>
-          🩺 Diagnose a Problem
-        </Link>
+        <div className={styles.toolbar}>
+          <PlantSelector plants={plants} selectedPlantId={selectedPlantId || null} />
+          <Link href="/diagnose" className={styles.diagnoseAction}>
+            🩺 Diagnose a Problem
+          </Link>
+        </div>
 
         <div className={styles.content}>
           <section className={styles.plantsSection}>
